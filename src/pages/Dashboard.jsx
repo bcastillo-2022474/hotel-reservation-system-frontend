@@ -25,10 +25,11 @@ function Dashboard(){
                                 <div className="absolute top-3 m-6 z-20" style={{right: '3.5%'}} >
                                     <Search className="h-6 w-6" />
                                 </div>
-                            
+                                
                         </div>
+                        <h1 className="absolute text-white bold ml-7 mr-7 top-28 font-bold text-2xl z-20 flex"> Encuentra un hotel a dónde sea que vayas.</h1>
                         
-                        <div className="absolute inset-0 bg-black opacity-30">
+                        <div className="absolute inset-0 bg-black opacity-40">
                             </div>
                             <img src={portada} className="w-full h-full object-cover" alt="" />
                             
