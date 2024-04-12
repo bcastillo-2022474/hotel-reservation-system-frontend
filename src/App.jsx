@@ -1,7 +1,8 @@
 import './App.css'
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider,} from "react-router-dom";
-import Login from "./Login/Login.jsx";
-import Signup from "./Signup/Signup.jsx";
+import Login from "./pages/Login.jsx"
+import Signup from "./pages/Signup.jsx"
+import Dashboard from "./pages/Dashboard.jsx"
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -9,7 +10,8 @@ const router = createBrowserRouter(
             {/*redirect path / to login */}
             <Route path="/" element={<Login/>}/>,
             <Route path="/login" element={<Login/>}/>,
-            <Route path="/signup" element={<Signup/>}/>
+            <Route path="/signup" element={<Signup/>}/>,
+            <Route path="/dashboard" element={<Dashboard/>}/>
         </>
     )
 )
