@@ -10,9 +10,9 @@ export default {
         primary: {
           // DEFAULT: "#5f201b"
           // DEFAULT: "#bd5717"
-          // DEFAULT: "#1778bd"
+          DEFAULT: "#1778bd"
           // CRIMSON
-          DEFAULT: "#dc143c"
+          // DEFAULT: "#dc143c"
         }
       }
     },
