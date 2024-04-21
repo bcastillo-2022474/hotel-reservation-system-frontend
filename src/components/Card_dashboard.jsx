@@ -7,29 +7,33 @@ import EmpyStar from "../icons/EmptyStar";
 import hotel from "../assets/Jeonju1.jpg";
 
 const Card = () => {
-  return (
-    <div className="bg-white w-full border-2 border-stone-100 rounded-xl flex p-1 flex-col sm:flex-row">
-      <div className="w-60 h-full rounded-lg overflow-hidden">
-        <img src={hotel} className="w-full h-full object-cover" alt="" />
-      </div>
-      <div>
-        <div className="bg-white grow h-full p-5">
-          <FullStar />
-          <FullStar />
-          <FullStar />
-          <EmpyStar />
-          <EmpyStar />
-          <h1 className="font-bold text-2xl">Un hotel generico</h1>
-          <p className="text-gray-400">Ciudad de Guatemala, Guatemala</p>
-        </div>
-      </div>
-      <div className="bg-blue-50">
-        <div className="bg-stone-100 grow max-w-60 h-full p-2 rounded-lg overflow-hidden"></div>
-        <h1 className="font-bold text-4xl mt-2 ml-2">100 $</h1>
-        <p className="text-gray-400 ml-2">Por noche</p>
-      </div>
-    </div>
-  );
+  return(
+    <div className="bg-white h-flex w-full mt-2 shadow-lg rounded-xl flex flex-col md:flex-row md:h-40" >
+         <div className="w-full  h-40 md:max-w-64 md:h-full p-1 overflow-hidden relative">
+            <img src={hotel} className="w-full h-full object-cover rounded-lg" alt="" />
+         </div>
+         <div className="bg-white grow h-full p-3">
+             <FullStar/>
+             <FullStar/>
+             <FullStar/>
+             <EmpyStar/>
+             <EmpyStar/>
+             <h1 className="font-bold text-2xl">Un hotel de 5 estrellas</h1>
+             <p className="text-gray-400">Ciudad de Guatemala, Paises bajos</p>
+         </div>
+         <div className="bg-stone-200 grow h-full rounded-lg w-full md:max-w-[250px] md:w-flex">
+             <div className="flex h-2/3 p-2">
+                <p className="text-gray-400 m-3 mb-4 ">Desde</p>
+                <h1 className="font-bold text-4xl mt-2 mr-2">10,000Q</h1>
+             </div>
+             <div className="w-full h-12 md:h-1/3">
+                <button className="bg-teal-400 w-full text-white font-bold h-full rounded-lg hover:bg-stone-900">
+                    Ver precios
+                </button>
+             </div>
+         </div>
+    </div> 
+ )
 };
 
 export default Card;

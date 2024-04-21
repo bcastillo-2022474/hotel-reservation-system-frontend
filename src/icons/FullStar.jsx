@@ -5,7 +5,7 @@ import "../index.css"
 
 const FullStar = () => {
     return (
-      <FontAwesomeIcon icon={faStar} size="lg" style={{color: "#EBB03C"}}/>
+      <FontAwesomeIcon className='text-[#EBB03C]' icon={faStar} size="md"/>
         
     );
   };
