@@ -1,7 +1,7 @@
 import React from "react";
 import "../index.css";
 
-import PriceRange from "./PriceRange-dashboard";
+import PriceRange from "./PriceRangeContainer.jsx";
 import Categories from "./Categories";
 
 const SideMenu =() => {

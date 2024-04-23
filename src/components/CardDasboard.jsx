@@ -1,4 +1,3 @@
-import React from "react";
 import "../index.css";
 
 import FullStar from "../icons/FullStar";
@@ -8,8 +7,8 @@ import hotel from "../assets/Jeonju1.jpg";
 
 const Card = () => {
   return(
-    <div className="bg-white h-flex w-full mt-2 shadow-lg rounded-xl flex flex-col md:flex-row md:h-40" >
-         <div className="w-full  h-40 md:max-w-64 md:h-full p-1 overflow-hidden relative">
+    <div className="bg-white h-flex w-full mt-2 shadow-2xl rounded-xl flex flex-col md:flex-row md:h-40 p-2" >
+         <div className="w-full h-40 md:max-w-64 md:h-full overflow-hidden relative">
             <img src={hotel} className="w-full h-full object-cover rounded-lg" alt="" />
          </div>
          <div className="bg-white grow h-full p-3">

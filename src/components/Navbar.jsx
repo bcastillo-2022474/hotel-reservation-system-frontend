@@ -1,31 +1,37 @@
-import React from "react";
-import "../index.css"
+import logo from "../assets/logo1.png";
 
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UserContext } from "../contexts/UserContext.jsx";
+import { useContext } from "react";
 
-import logo from "../assets/logo1.png"
-import user from "../assets/userImg.png"
+import "../index.css";
 
-const Navbar = () => {
-    return (
-        <nav className="bg-white w-full h-14 border-b-2 border-stone-200 flex sticky top-0 z-50">
-            <div className="bg-white p-3 h-full text-neutral-500">
-                <FontAwesomeIcon
-                    className="h-full block lg:hidden cursor-pointer hover:text-neutral-300"
-                    icon={faBars}
-                />
-            </div>
-            <div className="flex-none w-flex h-full flex items-center justify-center p-2">
-                <img className="h-full object-contain" src={logo} alt="" />
-            </div>
-            <div className="bg-white grow h-full">
-            </div>
-            <div className="bg-white w-flex h-full p-1 pr-3">
-                <img className="h-full object-contain " src={user} alt="" />
-            </div>
-        </nav>
-    )
-}
+const Sidebar = () => {
+  const { user } = useContext(UserContext);
+  const initials = [user.name.at(0), user.lastname.at(0)].map((letter) => letter.toUpperCase()).join("");
 
-export default Navbar;
+
+  return (
+    <div className="w-full flex justify-center border">
+      <nav className="bg-white w-full lg:max-w-[90%] flex justify-between">
+        <div className="flex justify-between gap-3 px-5 w-full">
+          <div className="flex gap-3 items-center">
+            <FontAwesomeIcon
+              className="lg:hidden hover:text-neutral-300 text-neutral-500 text-4xl cursor-pointer"
+              icon={faBars}
+            />
+            <img className="h-14 object-contain overflow-y-hidden" src={logo} alt="" />
+          </div>
+          <div className="flex items-center">
+            <div className="rounded-full p-5 relative bg-red-800 flex justify-center items-center text-white">
+              <span className="absolute text-2xl font-bold">{initials}</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  );
+};
+
+export default Sidebar;

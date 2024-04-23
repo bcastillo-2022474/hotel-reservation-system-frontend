@@ -3,6 +3,7 @@ import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider,} f
 import Login from "./pages/Login.jsx"
 import Signup from "./pages/Signup.jsx"
 import Dashboard from "./pages/Dashboard.jsx"
+import AdminDashboard from "./pages/AdminDashboard.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -12,6 +13,7 @@ const router = createBrowserRouter(
             <Route path="/login" element={<Login/>}/>,
             <Route path="/signup" element={<Signup/>}/>,
             <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/admin" element={<AdminDashboard/>}/>
         </>
     )
 )
