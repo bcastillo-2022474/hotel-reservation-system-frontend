@@ -1,5 +1,3 @@
-// import backgroundImage from "../assets/background-image-red.jpg"
-// import backgroundImage from "../assets/hotel.jpg"
 import backgroundImage from "../assets/rio-janeiro.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { API_URL, emailRegex, passwordRegex } from "../config.js";
