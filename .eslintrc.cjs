@@ -17,5 +17,10 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-  },
+    indent: ['error', 2],
+    'comma-dangle': ['error', 'always-multiline'],
+    'object-curly-spacing': ['error', 'always', {
+      arraysInObjects: false,
+    }],
+  }
 }
