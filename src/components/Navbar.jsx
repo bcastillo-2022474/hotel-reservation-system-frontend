@@ -14,7 +14,7 @@ const Sidebar = () => {
     .join("");
 
   return (
-    <div className="w-full flex justify-center border sticky top-0 bg-white">
+    <div className="w-full flex justify-center border sticky z-50 top-0 bg-white">
       <nav className="w-full lg:max-w-[90%] flex justify-between">
         <div className="flex justify-between gap-3 px-5 w-full">
           <div className="flex gap-3 items-center">

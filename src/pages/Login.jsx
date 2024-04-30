@@ -41,6 +41,7 @@ function Login() {
     const { user, token } = await response.json();
     localStorage.setItem("token", token);
     userContext.setUser(user);
+    console.log(user, token);
     navigate("/dashboard");
   };
 

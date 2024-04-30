@@ -1,13 +1,23 @@
-import { Route, Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext.jsx";
 import { useContext, useEffect, useState } from "react";
+import { API_URL } from "../config.js";
+import { PropTypes } from "prop-types";
 
+const CLIENT_ROLE = "CLIENT_ROLE";
 async function validateToken(token) {
-  // Llama al servidor con el token para validar y obtener la información del usuario
-  // Devuelve la información del usuario si el token es válido, de lo contrario devuelve null
+  const response = await fetch(`${API_URL}/auth/token`, {
+    headers: {
+      "x-token": `${token}`,
+    },
+  });
+
+  if (!response.ok) return null;
+
+  return (await response.json()).data;
 }
 
-function PrivateClientRoute({ children, ...rest }) {
+function PrivateClientRoute() {
   const { user, setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,6 +29,7 @@ function PrivateClientRoute({ children, ...rest }) {
       if (!token) return;
 
       const userData = await validateToken(token);
+      console.log({ userData });
       if (userData) setUser(userData);
     }
 
@@ -29,18 +40,20 @@ function PrivateClientRoute({ children, ...rest }) {
     return null; // O muestra un componente de carga
   }
 
-  return (
-    <Route
-      {...rest}
-      render={() => {
-        return user && user.role === "client" ? (
-          children
-        ) : (
-          <Navigate to="/login" />
-        );
-      }}
-    />
-  );
+  if (!user) return <Navigate to="/login" />;
+
+  const isAuthorized = user && user.role === CLIENT_ROLE;
+
+  if (!isAuthorized && user) return <Navigate to="/admin" />;
+
+  return isAuthorized ? <Outlet /> : <Navigate to="/signup" />;
 }
+
+PrivateClientRoute.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+};
 
 export default PrivateClientRoute;
