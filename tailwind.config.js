@@ -2,7 +2,7 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}"
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -10,11 +10,11 @@ export default {
         primary: {
           // DEFAULT: "#5f201b"
           // DEFAULT: "#bd5717"
-          DEFAULT: "#1778bd"
+          DEFAULT: "#1778bd",
           // CRIMSON
           // DEFAULT: "#dc143c"
-        }
-      }
+        },
+      },
     },
   },
   plugins: [],

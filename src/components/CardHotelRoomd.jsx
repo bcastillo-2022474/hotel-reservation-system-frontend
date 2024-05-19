@@ -10,6 +10,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { API_URL } from "../config.js";
 import { UserContext } from "../contexts/UserContext.jsx";
 import { useContext } from "react";
+import PropTypes from "prop-types";
 
 function toPriceNumber(num) {
   return [...`${num}`].toReversed().reduce((str, num, i) => {
@@ -52,9 +53,7 @@ function getText(text, highlightedText) {
 
 const CardHotelRoom = ({
   description,
-  people_capacity,
   night_price,
-  room_type,
   hotel,
   img,
   rating,
@@ -187,6 +186,20 @@ const CardHotelRoom = ({
       </div>
     </Link>
   );
+};
+
+CardHotelRoom.propTypes = {
+  description: PropTypes.string.isRequired,
+  people_capacity: PropTypes.number.isRequired,
+  night_price: PropTypes.number.isRequired,
+  room_type: PropTypes.string.isRequired,
+  hotel: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  quantity_people_rated: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
+  favorite: PropTypes.bool.isRequired,
+  inputSearch: PropTypes.string.isRequired,
 };
 
 export default CardHotelRoom;

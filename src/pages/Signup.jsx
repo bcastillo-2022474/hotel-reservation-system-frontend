@@ -151,10 +151,10 @@ function Signup() {
                 />
                 {!validations.isLastNameValid &&
                   touchedStatus.isLastNameTouched && (
-                    <span className="text-red-700 text-xs">
+                  <span className="text-red-700 text-xs">
                       Lastname invalid, must be at least 3 characters long
-                    </span>
-                  )}
+                  </span>
+                )}
               </div>
             </div>
             <div className="flex flex-col gap-1">
@@ -192,11 +192,11 @@ function Signup() {
               />
               {!validations.isPasswordValid &&
                 touchedStatus.isPasswordTouched && (
-                  <span className="text-red-700 text-xs">
+                <span className="text-red-700 text-xs">
                     Password Invalid, must be 8 characters long and have 1
                     Uppercase, 1 Lowercase and 1 Symbol
-                  </span>
-                )}
+                </span>
+              )}
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-primary font-semibold text-lg">
@@ -218,10 +218,10 @@ function Signup() {
               />
               {!validations.isPasswordRepeatedValid &&
                 touchedStatus.isRepeatPasswordTouched && (
-                  <span className="text-red-700 text-xs">
+                <span className="text-red-700 text-xs">
                     Passwords not matching, or Password invalid
-                  </span>
-                )}
+                </span>
+              )}
             </div>
             <button
               onClick={handleSubmit}

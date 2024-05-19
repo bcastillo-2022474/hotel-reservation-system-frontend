@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../config.js";
 import CardHotelRoom from "./CardHotelRoomd.jsx";
+import PropTypes from "prop-types";
 
 export default function ContainerHotelRoomList({ inputSearch }) {
   const { isLoading, isError, data, error } = useQuery({
@@ -77,3 +78,7 @@ export default function ContainerHotelRoomList({ inputSearch }) {
     </div>
   );
 }
+
+ContainerHotelRoomList.propTypes = {
+  inputSearch: PropTypes.string,
+};
