@@ -6,9 +6,11 @@ import { UserContext } from "../contexts/UserContext.jsx";
 import { useContext } from "react";
 
 import "../index.css";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const { user } = useContext(UserContext);
+  console.log({ user });
   const initials = [user.name.at(0), user.lastname.at(0)]
     .map((letter) => letter.toUpperCase())
     .join("");
@@ -29,9 +31,12 @@ const Sidebar = () => {
             />
           </div>
           <div className="flex items-center">
-            <div className="rounded-full p-5 relative bg-red-800 flex justify-center items-center text-white">
+            <Link
+              to={"/profile"}
+              className="rounded-full p-5 relative bg-red-800 flex justify-center items-center text-white"
+            >
               <span className="absolute text-2xl font-bold">{initials}</span>
-            </div>
+            </Link>
           </div>
         </div>
       </nav>

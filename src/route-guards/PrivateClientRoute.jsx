@@ -5,7 +5,7 @@ import { API_URL } from "../config.js";
 import { PropTypes } from "prop-types";
 
 const CLIENT_ROLE = "CLIENT_ROLE";
-async function validateToken(token) {
+export async function validateToken(token) {
   const response = await fetch(`${API_URL}/auth/token`, {
     headers: {
       "x-token": `${token}`,
@@ -17,7 +17,9 @@ async function validateToken(token) {
   return (await response.json()).data;
 }
 
-function PrivateClientRoute() {
+// THIS COMPONENT MUST BE THE PARENT CONTAINER
+// OF EVERYTHING THAT REQUIRES USER AUTHENTICATION
+export function UserValidation() {
   const { user, setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -36,10 +38,20 @@ function PrivateClientRoute() {
     checkUser().then(() => setIsLoading(false));
   }, [user]);
 
-  if (isLoading) {
-    return null; // O muestra un componente de carga
-  }
+  if (isLoading) return null; // O muestra un componente de carga
 
+  return <Outlet />;
+}
+
+UserValidation.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+};
+
+function PrivateClientRoute() {
+  const { user } = useContext(UserContext);
   if (!user) return <Navigate to="/login" />;
 
   const isAuthorized = user && user.role === CLIENT_ROLE;
