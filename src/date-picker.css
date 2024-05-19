@@ -1,0 +1,18 @@
+.react-datepicker {
+    @apply font-[inherit] flex flex-col sm:flex-row gap-1 rounded-none;
+}
+
+.react-datepicker__header:not(.react-datepicker__header--has-time-select), .react-datepicker__header {
+    @apply rounded-none
+}
+
+.react-datepicker__month-container {
+    /*color: white;*/
+    @apply border grow;
+    float: none;
+}
+
+/*I want the second element with this class to dissapear*/
+.react-datepicker__month-container ~ .react-datepicker__month-container {
+    @apply hidden [@media(width>670px)]:block [@media(width>770px)]:hidden [@media(width>=1150px)]:block;
+}

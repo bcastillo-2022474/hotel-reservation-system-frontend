@@ -5,8 +5,11 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import ContainerHotelRoomList from "../components/ContainerHotelRoomList.jsx";
+import { useState } from "react";
 
 function Dashboard() {
+  const [inputSearch, setInputSearch] = useState("");
+
   return (
     <div className="h-dvh overflow-hidden">
       <Navbar />
@@ -22,7 +25,12 @@ function Dashboard() {
             />
             <div className="absolute w-full z-10 flex top-0 gap-10 items-center px-5">
               <div className="flex w-full justify-between gap-5 bg-white p-3 px-7 border-none rounded-full mt-6 opacity-[65%] z-10 w-full">
-                <input type="text" className="outline-none w-full" />
+                <input
+                  onChange={(e) => setInputSearch(e.target.value)}
+                  value={inputSearch}
+                  type="text"
+                  className="outline-none w-full"
+                />
                 <FontAwesomeIcon
                   icon={faSearch}
                   size="xl"
@@ -36,7 +44,7 @@ function Dashboard() {
           </div>
           <Link to={"/admin"}>LINK TO ADMIN</Link>
           {/*<div className="bg-red-500 grow">hola</div>*/}
-          <ContainerHotelRoomList />
+          <ContainerHotelRoomList inputSearch={inputSearch} />
         </div>
       </div>
     </div>

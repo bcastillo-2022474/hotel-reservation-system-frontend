@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
 // Step 1: Create a new context
@@ -11,7 +11,7 @@ export function UserContextProvider({ children }) {
   // The value that will be shared with other components
   const value = {
     user,
-    setUser
+    setUser,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

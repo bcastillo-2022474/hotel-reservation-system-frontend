@@ -88,6 +88,7 @@ function Hotel() {
           <p className="text-lg">{hotel.description}</p>
         </section>
         <RoomsContainer id={id} />
+        <ReviewsContainer reviews={hotel.reviews} />
       </div>
     </div>
   );
@@ -160,4 +161,10 @@ function RoomsContainer({ id }) {
       })}
     </section>
   );
+}
+
+function ReviewsContainer({ reviews }) {
+  console.log({ reviews });
+
+  return <div>Hello its me</div>;
 }
