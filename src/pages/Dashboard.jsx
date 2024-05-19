@@ -1,19 +1,19 @@
 import Navbar from "../components/Navbar";
-import Card from "../components/CardHotelRoomd.jsx";
 import Sidebar from "../components/Sidebar.jsx";
 import background from "../assets/venezia1.jpg";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import ContainerHotelRoomList from "../components/ContainerHotelRoomList.jsx";
 
 function Dashboard() {
   return (
-    <div>
+    <div className="h-dvh overflow-hidden">
       <Navbar />
-      <div className="flex flex-col sm:flex-row">
+      <div className="flex flex-col sm:flex-row h-full">
         <Sidebar />
-        <div className="flex-1 h-full flex-col items-center justify-center p-4">
-          <div className="bg-red-300 w-full h-56 rounded-xl overflow-hidden relative">
+        <div className="flex flex-col flex-1 h-full p-4">
+          <div className="bg-red-300 shrink-0 w-full h-56 rounded-xl overflow-hidden relative">
             <div className="absolute inset-0 bg-black opacity-40"></div>
             <img
               src={background}
@@ -35,9 +35,8 @@ function Dashboard() {
             </div>
           </div>
           <Link to={"/admin"}>LINK TO ADMIN</Link>
-          <Card />
-          <Card />
-          <Card />
+          {/*<div className="bg-red-500 grow">hola</div>*/}
+          <ContainerHotelRoomList />
         </div>
       </div>
     </div>

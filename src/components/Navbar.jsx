@@ -9,6 +9,7 @@ import "../index.css";
 
 const Sidebar = () => {
   const { user } = useContext(UserContext);
+  console.log({ user });
   const initials = [user.name.at(0), user.lastname.at(0)]
     .map((letter) => letter.toUpperCase())
     .join("");
