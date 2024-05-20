@@ -1,8 +1,8 @@
-import backgroundImage from "../assets/rio-janeiro.jpg";
+import backgroundImage from "../../assets/rio-janeiro.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { API_URL, emailRegex, passwordRegex } from "../config.js";
+import { API_URL, emailRegex, passwordRegex } from "../../config.js";
 import { useContext, useState } from "react";
-import { UserContext } from "../contexts/UserContext.jsx";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 function Login() {
   const [form, setForm] = useState({

@@ -1,14 +1,14 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import Signup from "./pages/Signup.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import AdminDashboard from "./pages/AdminDashboard.jsx";
+import Login from "./shared/pages/Login.jsx";
+import Signup from "./shared/pages/Signup.jsx";
+import Dashboard from "./client-module/dashboard/Dashboard.jsx";
+import AdminDashboard from "./admin-module/dasboard/AdminDashboard.jsx";
 import PrivateClientRoute, {
   UserValidation,
   validateToken,
 } from "./route-guards/PrivateClientRoute.jsx";
-import Hotel from "./pages/Hotel.jsx";
-import Room from "./pages/Room.jsx";
+import Hotel from "./client-module/hotel/Hotel.jsx";
+import Room from "./client-module/room/Room.jsx";
 
 const handleRedirect = async () => {
   const token = localStorage.getItem("token");

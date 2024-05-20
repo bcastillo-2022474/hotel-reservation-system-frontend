@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import CardRoom from "./CardRoom";
+import CardRoom from "./CardRoom.jsx";
 
 export default function RoomsGrid({ rows }) {
   return (
