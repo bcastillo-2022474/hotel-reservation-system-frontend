@@ -1,25 +1,21 @@
-import './App.css'
-import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider,} from "react-router-dom";
-import Login from "./pages/Login.jsx"
-import Signup from "./pages/Signup.jsx"
-import Dashboard from "./pages/Dashboard.jsx"
+import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <>
-            {/*redirect path / to login */}
-            <Route path="/" element={<Login/>}/>,
-            <Route path="/login" element={<Login/>}/>,
-            <Route path="/signup" element={<Signup/>}/>,
-            <Route path="/dashboard" element={<Dashboard/>}/>
-        </>
-    )
-)
+const queryClient = new QueryClient();
 
 function App() {
-    return <>
-        <RouterProvider router={router}/>
+  return (
+    <>
+      <QueryClientProvider client={queryClient}>
+        <ToastContainer />
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </>
+  );
 }
 
-export default App
+export default App;
