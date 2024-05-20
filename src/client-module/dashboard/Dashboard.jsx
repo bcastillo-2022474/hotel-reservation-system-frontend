@@ -1,10 +1,10 @@
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar.jsx";
-import background from "../assets/venezia1.jpg";
+import Navbar from "../../shared/componnents/Navbar.jsx";
+import Sidebar from "./Sidebar.jsx";
+import background from "../../assets/venezia1.jpg";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import ContainerHotelRoomList from "../components/ContainerHotelRoomList.jsx";
+import ContainerHotelRoomList from "./ContainerHotelRoomList.jsx";
 import { useState } from "react";
 
 function Dashboard() {

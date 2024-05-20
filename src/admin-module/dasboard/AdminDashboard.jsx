@@ -1,5 +1,5 @@
-import Navbar from "../components/Navbar.jsx";
-import RoomsContainer from "../components/RoomsContainer.jsx";
+import Navbar from "../../shared/componnents/Navbar.jsx";
+import RoomsContainer from "./RoomsContainer.jsx";
 
 export default function AdminDashboard() {
   return (

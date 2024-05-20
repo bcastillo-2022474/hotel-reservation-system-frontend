@@ -8,7 +8,7 @@ export const UserContext = createContext();
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // The value that will be shared with other components
+  // The value that will be shared with other shared
   const value = {
     user,
     setUser,
@@ -21,4 +21,4 @@ UserContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-// Custom hook that will be used by other components to access the context
+// Custom hook that will be used by other shared to access the context

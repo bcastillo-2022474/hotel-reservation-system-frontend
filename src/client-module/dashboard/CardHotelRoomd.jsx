@@ -4,11 +4,11 @@ import {
   faStar as faStarSolid,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../index.css";
+import "../../index.css";
 import { Link } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { API_URL } from "../config.js";
-import { UserContext } from "../contexts/UserContext.jsx";
+import { API_URL } from "../../config.js";
+import { UserContext } from "../../contexts/UserContext.jsx";
 import { useContext } from "react";
 import PropTypes from "prop-types";
 

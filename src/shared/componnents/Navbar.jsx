@@ -1,11 +1,11 @@
-import logo from "../assets/logo1.png";
+import logo from "../../assets/logo1.png";
 
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { UserContext } from "../contexts/UserContext.jsx";
+import { UserContext } from "../../contexts/UserContext.jsx";
 import { useContext } from "react";
 
-import "../index.css";
+import "../../index.css";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {

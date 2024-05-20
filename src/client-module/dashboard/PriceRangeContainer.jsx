@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../index.css";
+import "./price-range.css";
 
 const PriceRange = () => {
   const [minPrice, setMinPrice] = useState(2500);

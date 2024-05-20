@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { API_URL } from "../config.js";
+import { API_URL } from "../../config.js";
 import CardHotelRoom from "./CardHotelRoomd.jsx";
 import PropTypes from "prop-types";
 

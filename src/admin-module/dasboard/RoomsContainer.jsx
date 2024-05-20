@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTableCells, faTableList } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import RoomsGrid from "../components/RoomsGrid.jsx";
-import Table from "../components/Table.jsx";
+import RoomsGrid from "./RoomsGrid.jsx";
+import Table from "./Table.jsx";
 
 export default function RoomsContainer() {
   const columnsRef = useRef([
