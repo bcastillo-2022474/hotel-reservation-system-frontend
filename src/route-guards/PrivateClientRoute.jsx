@@ -4,7 +4,11 @@ import { useContext, useEffect, useState } from "react";
 import { API_URL } from "../config.js";
 import { PropTypes } from "prop-types";
 
-const CLIENT_ROLE = "CLIENT_ROLE";
+export const [CLIENT_ROLE, ADMIN_ROLE, ADMIN_PLATFORM_ROLE] = [
+  "CLIENT_ROLE",
+  "ADMIN_HOTEL_ROLE",
+  "ADMIN_PLATFORM_ROLE",
+];
 export async function validateToken(token) {
   const response = await fetch(`${API_URL}/auth/token`, {
     headers: {
@@ -50,11 +54,12 @@ UserValidation.propTypes = {
   ]),
 };
 
-function PrivateClientRoute() {
+export function PrivateClientRoute() {
   const { user } = useContext(UserContext);
   if (!user) return <Navigate to="/login" />;
 
-  const isAuthorized = user && user.role === CLIENT_ROLE;
+  const isAuthorized =
+    user && (user.role === CLIENT_ROLE || user.role === ADMIN_PLATFORM_ROLE);
 
   if (!isAuthorized && user) return <Navigate to="/admin" />;
 
@@ -68,4 +73,21 @@ PrivateClientRoute.propTypes = {
   ]),
 };
 
-export default PrivateClientRoute;
+export function PrivateAdminHotelRoute() {
+  const { user } = useContext(UserContext);
+  if (!user) return <Navigate to="/login" />;
+
+  const isAuthorized =
+    user && (user.role === ADMIN_ROLE || user.role === ADMIN_PLATFORM_ROLE);
+
+  if (!isAuthorized && user) return <Navigate to="/admin" />;
+
+  return isAuthorized ? <Outlet /> : <Navigate to="/signup" />;
+}
+
+PrivateAdminHotelRoute.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+};

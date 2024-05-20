@@ -3,9 +3,14 @@ import Login from "./shared/pages/Login.jsx";
 import Signup from "./shared/pages/Signup.jsx";
 import Dashboard from "./client-module/dashboard/Dashboard.jsx";
 import AdminDashboard from "./admin-module/dasboard/AdminDashboard.jsx";
-import PrivateClientRoute, {
+import {
+  PrivateClientRoute,
+  PrivateAdminHotelRoute,
   UserValidation,
   validateToken,
+  ADMIN_ROLE,
+  CLIENT_ROLE,
+  ADMIN_PLATFORM_ROLE,
 } from "./route-guards/PrivateClientRoute.jsx";
 import Hotel from "./client-module/hotel/Hotel.jsx";
 import Room from "./client-module/room/Room.jsx";
@@ -16,10 +21,14 @@ const handleRedirect = async () => {
   const user = await validateToken(token);
   if (!user) return redirect("/login");
 
-  const isAdmin = user.role === "admin";
-  if (isAdmin) return redirect("/admin");
+  const isHotelAdmin = user.role === ADMIN_ROLE;
+  if (isHotelAdmin) return redirect("/admin");
 
-  return redirect("/dashboard");
+  const isClient = user.role === CLIENT_ROLE;
+  if (isClient) return redirect("/dashboard");
+
+  const isPlatformAdmin = user.role === ADMIN_PLATFORM_ROLE;
+  if (isPlatformAdmin) return redirect("/dashboard");
 };
 export const router = createBrowserRouter([
   {
@@ -40,26 +49,32 @@ export const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: "/dashboard",
+        path: "",
         element: <PrivateClientRoute />,
         children: [
           {
+            path: "/dashboard",
             element: <Dashboard />,
-            path: "",
+          },
+          {
+            path: "/hotel/:id",
+            element: <Hotel />,
+          },
+          {
+            path: "/room/:id",
+            element: <Room />,
           },
         ],
       },
       {
-        path: "/hotel/:id",
-        element: <Hotel />,
-      },
-      {
-        path: "/room/:id",
-        element: <Room />,
-      },
-      {
-        path: "/admin",
-        element: <AdminDashboard />,
+        path: "",
+        element: <PrivateAdminHotelRoute />,
+        children: [
+          {
+            path: "/admin",
+            element: <AdminDashboard />,
+          },
+        ],
       },
     ],
   },
