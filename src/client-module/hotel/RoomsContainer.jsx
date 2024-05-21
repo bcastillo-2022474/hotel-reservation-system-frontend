@@ -36,18 +36,18 @@ function RoomsContainer({ id }) {
           <Link
             to={`/room/${room._id}`}
             key={room._id}
-            className="flex-1 min-w-[300px] rounded overflow-hidden"
+            className=" flex-1 min-w-[300px] rounded-lg overflow-hidden  border-none shadow-lg  hover:shadow-2xl transition duration-300 ease-in-out"
           >
             <img
               src={
                 room.images.find(({ is_main_image }) => is_main_image)
                   ?.image_url || ""
               }
-              className="h-[200px] w-full"
+              className="h-[200px] w-full object-cover"
               alt=""
             />
-            <div className="border px-3 py-5">
-              <p>{room.description}</p>
+            <div className="border px-4 py-5 border-none">
+              <p className="">{room.description}</p>
               <div className="flex justify-between gap-3 py-1">
                 <p className="flex gap-3">
                   <span className="font-bold">Tipo:</span>

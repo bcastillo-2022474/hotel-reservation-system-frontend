@@ -15,7 +15,7 @@ function Dashboard() {
       <Navbar />
       <div className="flex flex-col sm:flex-row h-full">
         <Sidebar />
-        <div className="flex flex-col flex-1 h-full p-4">
+        <div className="flex flex-col flex-1 h-full p-4 overflow-y-scroll">
           <div className="bg-red-300 shrink-0 w-full h-56 rounded-xl overflow-hidden relative">
             <div className="absolute inset-0 bg-black opacity-40"></div>
             <img
