@@ -13,7 +13,8 @@ import {
   ADMIN_PLATFORM_ROLE,
 } from "./route-guards/PrivateClientRoute.jsx";
 import Hotel from "./client-module/hotel/Hotel.jsx";
-import Room from "./client-module/room/Room.jsx";
+import Room from "./client-module/room-by-hotel-id/Room.jsx";
+import BookingOfLoggedUser from "./client-module/booking-by-user-id/BookingOfLoggedUser.jsx";
 
 const handleRedirect = async () => {
   const token = localStorage.getItem("token");
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
           {
             path: "/room/:id",
             element: <Room />,
+          },
+          {
+            path: "/me/bookings",
+            element: <BookingOfLoggedUser />,
           },
         ],
       },

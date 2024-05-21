@@ -9,7 +9,7 @@ function RoomsContainer({ id }) {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["room/by-hotel", id],
+    queryKey: ["room-by-hotel-id/by-hotel", id],
     queryFn: async () => {
       const response = await fetch(`${API_URL}/room/by-hotel/${id}`);
       if (!response.ok) {
