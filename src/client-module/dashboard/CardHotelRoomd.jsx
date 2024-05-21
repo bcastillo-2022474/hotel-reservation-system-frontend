@@ -134,9 +134,9 @@ const CardHotelRoom = ({
   return (
     <Link
       to={`/hotel/${hotel}`}
-      className="bg-white h-flex w-full mt-2 shadow-2xl rounded-xl flex flex-col md:flex-row md:h-40 p-2"
+      className="bg-white w-full mt-2 shadow-2xl rounded-xl md:h-[170px] flex flex-col md:flex-row p-2 overflow-hidden"
     >
-      <div className=" w-full h-40 md:max-w-64 md:h-full overflow-hidden relative">
+      <div className="md:w-[300px] h-[200px] md:h-auto md:max-w-64 shrink-0 overflow-hidden relative">
         <FontAwesomeIcon
           onClick={(e) => {
             e.preventDefault();
@@ -164,11 +164,15 @@ const CardHotelRoom = ({
           );
         })}
         <h1 className="font-bold text-2xl">
-          Un hotel de {rating || 3} estrellas
+          Un hotel de {Math.round(rating * 100) / 100 || 2} estrellas
         </h1>
-        <p className="text-gray-400">{getText(description, inputSearch)}</p>
+        <p className="text-gray-400 shrink overflow-hidden">
+          <span className="text-ellipsis overflow-hidden w-full">
+            {getText(description, inputSearch)}
+          </span>
+        </p>
       </div>
-      <div className="bg-stone-200 grow h-full rounded-lg w-full md:max-w-[250px] md:w-flex">
+      <div className="bg-stone-200 grow h-full shrink-0 rounded-lg w-full md:max-w-[250px] md:w-flex">
         <div className="flex h-2/3 p-2">
           <p className="text-gray-400 m-3 mb-4 ">Desde</p>
           <h1 className="font-bold text-4xl mt-2 mr-2">

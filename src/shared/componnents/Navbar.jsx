@@ -24,11 +24,13 @@ const Sidebar = () => {
               className="lg:hidden hover:text-neutral-300 text-neutral-500 text-4xl cursor-pointer"
               icon={faBars}
             />
-            <img
-              className="h-12  object-contain overflow-y-hidden"
-              src={logo}
-              alt=""
-            />
+            <Link to="/">
+              <img
+                className="h-12  object-contain overflow-y-hidden"
+                src={logo}
+                alt=""
+              />
+            </Link>
           </div>
           <div className="flex items-center">
             <Link
