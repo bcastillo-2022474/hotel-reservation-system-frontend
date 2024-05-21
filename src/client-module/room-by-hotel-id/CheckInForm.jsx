@@ -76,7 +76,7 @@ function CheckInForm({ room, bookings }) {
       });
     },
     onError: () => {
-      toast("Error booking room", { type: "error" });
+      toast("Error booking room-by-hotel-id", { type: "error" });
     },
   });
 
