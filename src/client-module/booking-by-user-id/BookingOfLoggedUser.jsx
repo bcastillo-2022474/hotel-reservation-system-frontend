@@ -7,6 +7,8 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext.jsx";
 import DatePicker from "react-datepicker";
 import { Link } from "react-router-dom";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function BookingOfLoggedUser() {
   const { user } = useContext(UserContext);
@@ -60,7 +62,7 @@ function BookingOfLoggedUser() {
       <Navbar></Navbar>
       <section className="flex flex-col gap-3 py-3 px-3">
         <h1 className="text-4xl font-bold">Bookings</h1>
-        <div className="w-full grid  grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5 px-5">
+        <div className="w-full grid  grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-3 px-5">
           {bookings.map(({ room, _id, date_start, date_end }) => (
             <div className="flex justify-center" key={_id}>
               <div className="border border-gray-200 rounded-md max-w-[350px]">
@@ -77,6 +79,8 @@ function BookingOfLoggedUser() {
                     date_start={date_start}
                     date_end={date_end}
                     taken_dates={takenDatesMap[room._id]}
+                    bookingId={_id}
+                    userId={user._id}
                   />
                   <Link
                     to={`/invoice/${_id}`}
@@ -167,7 +171,13 @@ CancelBooking.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-function DateEditContainer({ date_start, date_end, taken_dates }) {
+function DateEditContainer({
+  date_start,
+  date_end,
+  taken_dates,
+  bookingId,
+  userId,
+}) {
   const [[start, end], setRangeDates] = useState([date_start, date_end]);
   const [showUpdateButton, setShowUpdateButton] = useState(false);
   //today and 2 months from now
@@ -175,6 +185,53 @@ function DateEditContainer({ date_start, date_end, taken_dates }) {
     new Date(),
     new Date(new Date().setMonth(new Date().getMonth() + 2)),
   ];
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: async ({ start, end }) => {
+      const response = await fetch(`${API_URL}/booking/${bookingId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "x-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ date_start: start, date_end: end }),
+      });
+      if (!response.ok) {
+        throw new Error((await response.json()).msg);
+      }
+      return response.json();
+    },
+    onSuccess: () => {
+      toast("Reservación actualizada", { type: "success" });
+      queryClient.invalidateQueries({
+        queryKey: ["booking/by-user", userId],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["invoices/by-booking", bookingId],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["taken-dates/by-user", userId],
+      });
+    },
+    onError: (error) => {
+      toast("Error: " + error.message, { type: "error" });
+    },
+  });
+
+  useEffect(() => {
+    if (mutation.error || mutation.isSuccess) {
+      setTimeout(() => {
+        if (mutation.error) setRangeDates([date_start, date_end]);
+        mutation.reset();
+        setShowUpdateButton(false);
+      }, 5000);
+    }
+  }, [mutation.error, mutation.isSuccess]);
+
   console.log({ taken_dates });
 
   return (
@@ -217,24 +274,51 @@ function DateEditContainer({ date_start, date_end, taken_dates }) {
       </div>
       {showUpdateButton && (
         <div className="flex gap-2 w-full">
-          <button
-            onClick={() => {
-              console.log("update");
-            }}
-            className="w-1/2 bg-black text-white px-2 py-1 rounded outline-none focus:outline-2 focus:outline-black outline-offset-1"
-          >
-            <span>Actualizar</span>
-          </button>
-          <button
-            onClick={() => {
-              setRangeDates([date_start, date_end]);
-              setShowUpdateButton(false);
-              console.log("cancelar update");
-            }}
-            className="w-1/2 bg-black text-white px-2 py-1 rounded outline-none focus:outline-2 focus:outline-black outline-offset-1"
-          >
-            <span>Cancelar</span>
-          </button>
+          {mutation.isIdle && (
+            <button
+              onClick={() => {
+                mutation.mutate({ start, end });
+              }}
+              className="w-1/2 bg-black text-white px-2 py-1 rounded outline-none focus:outline-2 focus:outline-black outline-offset-1"
+            >
+              <span>Actualizar</span>
+            </button>
+          )}
+          {mutation.isPending && (
+            <button className="w-full flex gap-2 justify-center bg-black text-white px-2 py-1 rounded outline-none focus:outline-2 focus:outline-black outline-offset-1">
+              <span>Actualizando</span>
+              <span className="animate-spin size-[25px] border-4  border-b-neutral-900 border-t-slate-300 rounded-full" />
+            </button>
+          )}
+
+          {mutation.isError && (
+            <button className="w-full bg-black text-white px-2 py-1 rounded outline-none focus:outline-2 focus:outline-black outline-offset-1">
+              <span>Error</span>
+            </button>
+          )}
+
+          {mutation.isIdle && (
+            <button
+              onClick={() => {
+                setRangeDates([date_start, date_end]);
+                setShowUpdateButton(false);
+                console.log("cancelar update");
+              }}
+              className="w-1/2 bg-black text-white px-2 py-1 rounded outline-none focus:outline-2 focus:outline-black outline-offset-1"
+            >
+              <span>Cancelar</span>
+            </button>
+          )}
+
+          {mutation.isSuccess && (
+            <button className="w-full flex justify-center items-center gap-2 bg-black text-white px-2 py-1 rounded outline-none focus:outline-2 focus:outline-black outline-offset-1">
+              <span>Actualizado</span>
+              <FontAwesomeIcon
+                icon={faCheck}
+                className="text-white"
+              ></FontAwesomeIcon>
+            </button>
+          )}
         </div>
       )}
     </div>
@@ -246,8 +330,10 @@ DateEditContainer.propTypes = {
   date_end: PropTypes.string.isRequired,
   taken_dates: PropTypes.arrayOf(
     PropTypes.shape({
-      date_start: PropTypes.string,
-      date_end: PropTypes.string,
+      start: PropTypes.string,
+      end: PropTypes.string,
     }),
   ).isRequired,
+  bookingId: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 };
