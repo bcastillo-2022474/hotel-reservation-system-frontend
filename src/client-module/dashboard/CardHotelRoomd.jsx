@@ -43,7 +43,7 @@ function getText(text, highlightedText) {
   return (
     <>
       <span>{beforeText}</span>
-      <span className="dark:bg-violet-800 bg-violet-500">
+      <span className="dark:bg-teal-300 bg-violet-500 text-black">
         {textHighlighted}
       </span>
       <span>{afterText}</span>
@@ -136,7 +136,7 @@ const CardHotelRoom = ({
       to={`/hotel/${hotel}`}
       className="bg-white h-flex w-full mt-2 shadow-2xl rounded-xl flex flex-col md:flex-row md:h-40 p-2"
     >
-      <div className="w-full h-40 md:max-w-64 md:h-full overflow-hidden relative">
+      <div className=" w-full h-40 md:max-w-64 md:h-full overflow-hidden relative">
         <FontAwesomeIcon
           onClick={(e) => {
             e.preventDefault();

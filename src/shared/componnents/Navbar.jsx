@@ -25,7 +25,7 @@ const Sidebar = () => {
               icon={faBars}
             />
             <img
-              className="h-14 object-contain overflow-y-hidden"
+              className="h-12  object-contain overflow-y-hidden"
               src={logo}
               alt=""
             />
@@ -33,9 +33,9 @@ const Sidebar = () => {
           <div className="flex items-center">
             <Link
               to={"/profile"}
-              className="rounded-full p-5 relative bg-red-800 flex justify-center items-center text-white"
+              className="rounded-full p-[20px] relative bg-black flex justify-center items-center text-white"
             >
-              <span className="absolute text-2xl font-bold">{initials}</span>
+              <span className="absolute text-xl font-bold">{initials}</span>
             </Link>
           </div>
         </div>
