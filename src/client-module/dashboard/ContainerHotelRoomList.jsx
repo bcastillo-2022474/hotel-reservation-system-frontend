@@ -38,7 +38,7 @@ export default function ContainerHotelRoomList({ inputSearch }) {
   console.log(data);
 
   return (
-    <div className="overflow-y-scroll grow">
+    <div className=" grow">
       {filteredRooms.length === 0 && (
         <div className="text-center text-5xl py-10">No rooms found</div>
       )}
