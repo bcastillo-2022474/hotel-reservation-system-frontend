@@ -7,22 +7,22 @@ export default function AdminDashboard() {
     <div className="min-h-screen h-1 flex flex-col">
       <Navbar />
       <div className="p-10 bg-stone-200 flex-1">
-        <div className=" flex bg-green-200 w-full">
+        <div className=" flex w-full">
           <Link
             to={'/room/form/'}
             className="bg-black rounded-lg text-white font-bold p-3 m-3"
           >
-            Big chungus
+            Add Room
           </Link>
           <Link
             to={'/service/form/'}
             className="bg-black rounded-lg text-white font-bold p-3 m-3"
           >
-            Big chungus
+            Add Service
           </Link>
 
         </div>
-        <RoomsContainer />
+        <RoomsContainer />  
       </div>
     </div>
   );
