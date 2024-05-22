@@ -14,6 +14,7 @@ import {
 } from "./route-guards/PrivateClientRoute.jsx";
 import Hotel from "./client-module/hotel/Hotel.jsx";
 import Room from "./client-module/room/Room.jsx";
+import BookingsByHotelId from "./admin-module/dasboard/BookingByHotelId.jsx";
 
 const handleRedirect = async () => {
   const token = localStorage.getItem("token");
@@ -74,8 +75,13 @@ export const router = createBrowserRouter([
             path: "/admin",
             element: <AdminDashboard />,
           },
+          {
+            path: "/admin/bookings/by-hotel/:id",
+            element: <BookingsByHotelId />,
+          },
         ],
       },
+
     ],
   },
 ]);
