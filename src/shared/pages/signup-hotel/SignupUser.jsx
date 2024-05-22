@@ -165,7 +165,7 @@ function SignupHotel({ onSave }) {
               onClick={handleSubmit}
               className="px-3 py-2 bg-black text-white rounded outline-button"
             >
-              Iniciar Sesion
+              Siguiente
             </button>
             <Link
               to={"/login"}

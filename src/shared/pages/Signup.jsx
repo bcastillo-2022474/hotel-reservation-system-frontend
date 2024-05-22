@@ -235,6 +235,13 @@ function Signup() {
             >
               Ya tienes con una cuenta? Loggeate aca
             </Link>
+            <Link
+              to={"/signup/hotel"}
+              className="text-primary hover:underline text-center text-sm outline-none focus:underline focus:text-blue-500"
+            >
+              Quieres publcar tu hotel aqui? crea una cuenta aqui y sigue los
+              pasos
+            </Link>
           </form>
         </div>
       </div>
