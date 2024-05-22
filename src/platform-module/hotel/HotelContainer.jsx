@@ -98,10 +98,6 @@ function HotelContainer() {
 
 export default HotelContainer;
 
-HotelContainer.propTypes = {
-  id: PropTypes.string.isRequired,
-};
-
 function DeleteHotel({ hotelId }) {
   const queryClient = useQueryClient();
   const mutation = useMutation({
