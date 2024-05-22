@@ -16,9 +16,8 @@ function BookingByHotelId() {
     data,
     isLoading: isLoadingBookings,
     error: errorBookings,
-    isSuccess,
   } = useQuery({
-    queryKey: ["booking/by-hotel", id],    
+    queryKey: ["booking/by-hotel", id],
     queryFn: async () => {
       const response = await fetch(`${API_URL}/booking/by-hotel/${id}`);
       if (!response.ok) {
@@ -57,47 +56,45 @@ function BookingByHotelId() {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log({ data, takenDatesMap })
+  console.log({ data, takenDatesMap });
 
   return (
     <div className="min-h-dvh h-1">
       <Navbar></Navbar>
       <section className="flex flex-col gap-3 py-3 px-3">
-        <h1 className="text-4xl font-bold">Bookings</h1>
+        <h1 className="text-4xl font-bold text-center">Bookings</h1>
         <div className="w-full grid  grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-3 px-5">
-          {data && data?.bookings?.map(({ hotel, _id, date_start, date_end }) => (
-            <div className="flex justify-center" key={_id}>
-              <div className="border border-gray-200 rounded-md max-w-[350px]">
-                {/* <img
-                  src={
-                    hotel.images.find(({ is_main_image }) => is_main_image)
-                      .image_url
-                  }
-                  alt={hotel.name}
-                /> */}
-                <div className="px-5 py-3 flex flex-col gap-3">
-                  <span>{hotel.description}</span>
-                  <DateEditContainer
-                    date_start={date_start}
-                    date_end={date_end}
-                    taken_dates={takenDatesMap[_id]}
-                    bookingId={_id}
-                    hotelId={id}
+          {data &&
+            data?.bookings?.map(({ room, _id, date_start, date_end }) => (
+              <div className="flex justify-center" key={_id}>
+                <div className="border border-gray-200 rounded-md max-w-[350px]">
+                  <img
+                    src={
+                      room.images.find(({ is_main_image }) => is_main_image)
+                        .image_url
+                    }
+                    alt={room.name}
                   />
-                  <Link
-                    to={`/invoice/${_id}`}
-                    className="border text-center px-3 py-2 rounded border-black outline-none hover:bg-black hover:text-white"
-                  >
-                    Ver factura
-                  </Link>
-                  <CancelBooking
-                    bookingId={_id}
-                    hotelId={id}
-                  ></CancelBooking>
+                  <div className="px-5 py-3 flex flex-col gap-3">
+                    <span>{room.description}</span>
+                    <DateEditContainer
+                      date_start={date_start}
+                      date_end={date_end}
+                      taken_dates={takenDatesMap[_id] || []}
+                      bookingId={_id}
+                      hotelId={id}
+                    />
+                    <Link
+                      to={`/invoice/${_id}`}
+                      className="border text-center px-3 py-2 rounded border-black outline-none hover:bg-black hover:text-white"
+                    >
+                      Ver factura
+                    </Link>
+                    <CancelBooking bookingId={_id} hotelId={id}></CancelBooking>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </section>
     </div>
@@ -192,7 +189,7 @@ function DateEditContainer({
 
   const mutation = useMutation({
     mutationFn: async ({ start, end }) => {
-      const response = await fetch(`${API_URL}/bookings/${hotelId}`, {
+      const response = await fetch(`${API_URL}/booking/${bookingId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
