@@ -59,24 +59,26 @@ function HotelContainer() {
     });
 
     return (
-      <button
-        onClick={() => {
-          if (mutation.isError || mutation.isPending) return;
-          mutation.mutate();
-        }}
-        className="bg-red-500 text-white px-3 py-2 rounded outline-none focus:outline-2 focus:outline-black outline-offset-1"
-      >
-        <span>
-          {mutation.isPending && (
-            <>
-              <span>Eliminando</span>
-              <span className="animate-spin size-[25px] border-4 border-b-black border-t-black rounded-full" />
-            </>
-          )}
-          {mutation.isIdle && <span>Eliminar</span>}
-          {mutation.isError && "Error"}
-        </span>
-      </button>
+      <div className="absolute bottom-2 left-2 w-full">
+        <button
+          onClick={() => {
+            if (mutation.isError || mutation.isPending) return;
+            mutation.mutate();
+          }}
+          className="bg-black text-white px-3 py-2 rounded border border-black outline-none hover:bg-transparent hover:text-black transition duration-300"
+        >
+          <span>
+            {mutation.isPending && (
+              <>
+                <span>Eliminando</span>
+                <span className="animate-spin size-[25px] border-4 border-b-black border-t-black rounded-full" />
+              </>
+            )}
+            {mutation.isIdle && <span>Eliminar</span>}
+            {mutation.isError && "Error"}
+          </span>
+        </button>
+      </div>
     );
   }
 
@@ -98,9 +100,9 @@ function HotelContainer() {
               className="bg-white rounded-lg shadow-md p-4 max-w-xs w-full cursor-pointer mb-6 relative border-2 border-gray-300"
             >
               <div className="flex flex-col gap-2">
-                <Link to={`/hotel/${hotel._id}`}>
-                  <ImgHotel id={hotel._id} />
-                </Link>
+                <div>
+                  <ImgHotel id={hotel._id} /> {/* Reemplaza con tu componente de imagen */}
+                </div>
                 <div>
                   <h1 className="text-lg font-semibold text-neutral-600">{hotel.name}</h1>
                   <div>
@@ -119,7 +121,7 @@ function HotelContainer() {
                   </p>
                 </div>
               </div>
-              <div className="absolute bottom-2 left-2">
+              <div>
                 <DeleteHotel hotelId={hotel._id} />
               </div>
             </div>
