@@ -3,6 +3,7 @@ import Login from "./shared/pages/Login.jsx";
 import Signup from "./shared/pages/Signup.jsx";
 import Dashboard from "./client-module/dashboard/Dashboard.jsx";
 import AdminDashboard from "./admin-module/dasboard/AdminDashboard.jsx";
+import HotelAdmin from "./admin-module/dasboard/HotelAdmin.jsx"
 import {
   PrivateClientRoute,
   PrivateAdminHotelRoute,
@@ -91,9 +92,13 @@ export const router = createBrowserRouter([
         path: "",
         element: <PrivateAdminHotelRoute />,
         children: [
+          // {
+          //   path: "/admin",
+          //   element: <AdminDashboard />,
+          // },
           {
             path: "/admin",
-            element: <AdminDashboard />,
+            element: <HotelContainer />,
           },
           {
             path: "/admin/bookings/by-hotel/:id",
@@ -112,6 +117,10 @@ export const router = createBrowserRouter([
       {
         path: "users",
         element: <User />,
+      },
+      {
+        path: "/hotel/by-user/:id",
+        elment: <HotelAdmin/>,
       },
     ],
   },

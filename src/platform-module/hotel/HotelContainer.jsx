@@ -3,6 +3,7 @@ import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { API_URL } from "../../config.js";
 import Navbar from "../../shared/components/Navbar.jsx";
+import { Link } from "react-router-dom";
 
 function HotelContainer() {
   const { data, isLoading, error } = useQuery({
@@ -31,12 +32,34 @@ function HotelContainer() {
   return (
     <>
       <Navbar></Navbar>
+      <div className=" items-center flex w-full content-center m-7">
+        <Link
+          to={'/room/form/'}
+          className="bg-black rounded-lg text-white font-bold p-3 m-3"
+        >
+          Add Room
+        </Link>
+
+        <Link
+          to={'/hotel/create/'}
+          className="bg-black rounded-lg text-white font-bold p-3 m-3"
+        >
+          Add Hotel
+        </Link>
+        <Link
+          to={'/users'}
+          className="bg-black rounded-lg text-white font-bold p-3 m-3"
+        >
+          System users
+        </Link>
+
+      </div>
       <div className="flex justify-around pt-2">
         <h2 className="text-4xl font-bold text-center">Hoteles</h2>
         <div className="flex gap-3">
-          <button className="bg-black text-white px-3 py-2 rounded outline-none focus:outline-1 outline-offset-1 focus:outline-black">
+          {/* <button className="bg-black text-white px-3 py-2 rounded outline-none focus:outline-1 outline-offset-1 focus:outline-black">
             Crear hotel
-          </button>
+          </button> */}
           {/*<button className="bg-black text-white px-3 py-2 rounded outline-none focus:outline-1 outline-offset-1 focus:outline-black">*/}
           {/*  Ver hotel*/}
           {/*</button>*/}
@@ -83,7 +106,17 @@ function HotelContainer() {
                       </span>
                     </p>
                   </div>
+                  <div className="w-full  p-3 pl-0 items-center justify-center ">
+                    <Link
+                      to={`/admin/bookings/by-hotel/${hotel._id}`}
+                      className="bg-black rounded-lg text-white font-bold p-3"
+                    >
+                      Ver Reservaciones
+                    </Link>
+                  </div>
+
                   <div className="shrink-0 w-full">
+
                     <DeleteHotel hotelId={hotel._id} />
                   </div>
                 </div>

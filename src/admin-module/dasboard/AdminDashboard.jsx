@@ -16,12 +16,17 @@ export default function AdminDashboard() {
             Add Room
           </Link>
           <Link
-            to={'/service/form/'}
+            to={'/hotel.create/'}
             className="bg-black rounded-lg text-white font-bold p-3 m-3"
           >
-            Add Service
+            Add Hotel
           </Link>
-
+          <Link
+            to={'/hotel.create/'}
+            className="bg-black rounded-lg text-white font-bold p-3 m-3"
+          >
+            Add Hotel
+          </Link>
         </div>
         <RoomsContainer />  
       </div>

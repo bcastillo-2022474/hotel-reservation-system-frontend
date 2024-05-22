@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Navbar from "../componnents/Navbar.jsx";
+import Navbar from "../components/Navbar.jsx"
 import { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -7,7 +7,7 @@ import { createPortal } from "react-dom";
 import { API_URL } from "../../config.js";
 import { toast } from "react-toastify";
 import { UserContext } from "../../contexts/UserContext.jsx";
-import Modal from "../componnents/Modal.jsx";
+import Modal from "../components/Modal.jsx";
 
 function RoomForm() {
   const { user } = useContext(UserContext);

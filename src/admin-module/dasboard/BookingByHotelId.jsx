@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { API_URL } from "../../config.js";
-import Navbar from "../../shared/componnents/Navbar.jsx";
+import Navbar from "../../shared/components/Navbar.jsx";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Link, useParams } from "react-router-dom";
