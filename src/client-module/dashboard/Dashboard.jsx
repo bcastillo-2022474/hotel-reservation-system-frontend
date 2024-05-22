@@ -5,9 +5,11 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import ContainerHotelRoomList from "./ContainerHotelRoomList.jsx";
-import { useState } from "react";
+import { UserContext } from "../../contexts/UserContext.jsx";
+import { useContext, useState } from "react";
 
 function Dashboard() {
+  const { user } = useContext(UserContext);
   const [inputSearch, setInputSearch] = useState("");
 
   return (
@@ -43,7 +45,7 @@ function Dashboard() {
             </div>
           </div>
           <Link
-            to={"/admin"}
+            to={'/admin'}
             className="w-full bg-black p-2 mt-1 rounded-xl text-white font-bold items-center text-center hover:bg-stone-700"
           >
             Menú de administrador
