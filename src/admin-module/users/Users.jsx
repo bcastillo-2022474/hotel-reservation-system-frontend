@@ -1,4 +1,4 @@
-import Navbar from "../../shared/componnents/Navbar.jsx";
+import Navbar from "../../shared/components/Navbar.jsx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { API_URL } from "../../config.js";
 import { toast } from "react-toastify";
@@ -7,7 +7,7 @@ import {
   ADMIN_ROLE,
   CLIENT_ROLE,
 } from "../../route-guards/PrivateClientRoute.jsx";
-import Dropdown from "../../shared/componnents/Dropdown.jsx";
+import Dropdown from "../../shared/components/Dropdown.jsx";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";

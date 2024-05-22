@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../../config.js";
-import Navbar from "../../shared/componnents/Navbar.jsx";
+import Navbar from "../../shared/components/Navbar.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -13,7 +13,6 @@ import RoomsContainer from "./RoomsContainer.jsx";
 import ReviewsContainer from "./ReviewsContainer.jsx";
 
 function Hotel() {
-
   const { id } = useParams();
   const [imgIndex, setImgIndex] = useState(null);
   const {

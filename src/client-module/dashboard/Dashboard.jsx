@@ -1,4 +1,4 @@
-import Navbar from "../../shared/componnents/Navbar.jsx";
+import Navbar from "../../shared/components/Navbar.jsx";
 import Sidebar from "./Sidebar.jsx";
 import background from "../../assets/venezia1.jpg";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";

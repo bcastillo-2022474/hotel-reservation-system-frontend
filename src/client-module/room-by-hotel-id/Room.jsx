@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../config.js";
-import Navbar from "../../shared/componnents/Navbar.jsx";
+import Navbar from "../../shared/components/Navbar.jsx";
 import CheckInForm from "./CheckInForm.jsx";
 import ImageCollage from "./ImageCollage.jsx";
 

@@ -18,6 +18,7 @@ import BookingOfLoggedUser from "./client-module/booking-by-user-id/BookingOfLog
 import CreateHotel from "./shared/pages/CreateHotel.jsx";
 import HotelContainer from "./platform-module/hotel/HotelContainer.jsx";
 import User from "./admin-module/users/Users.jsx";
+import SignupHotel from "./shared/pages/signup-hotel/SignupHotel.jsx";
 
 const handleRedirect = async () => {
   const token = localStorage.getItem("token");
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/signup/hotel",
+        element: <SignupHotel />,
       },
       {
         path: "",

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { API_URL } from "../../config.js";
-import Navbar from "../../shared/componnents/Navbar.jsx";
+import Navbar from "../../shared/components/Navbar.jsx";
 
 function HotelContainer() {
   const { data, isLoading, error } = useQuery({
