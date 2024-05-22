@@ -42,7 +42,12 @@ function Dashboard() {
               </h1>
             </div>
           </div>
-          <Link to={"/admin"}>LINK TO ADMIN</Link>
+          <Link
+            to={"/admin"}
+            className="w-full bg-black p-2 mt-1 rounded-xl text-white font-bold items-center text-center hover:bg-stone-700"
+          >
+            Menú de administrador
+          </Link>
           {/*<div className="bg-red-500 grow">hola</div>*/}
           <ContainerHotelRoomList inputSearch={inputSearch} />
         </div>
