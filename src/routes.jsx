@@ -16,7 +16,13 @@ import Hotel from "./client-module/hotel/Hotel.jsx";
 import Room from "./client-module/room-by-hotel-id/Room.jsx";
 import BookingOfLoggedUser from "./client-module/booking-by-user-id/BookingOfLoggedUser.jsx";
 import CreateHotel from "./shared/pages/CreateHotel.jsx";
+
 import RoomForm from "./shared/pages/RoomForm.jsx"
+
+import HotelContainer from "./platform-module/hotel/HotelContainer.jsx";
+import User from "./admin-module/users/Users.jsx";
+import SignupHotel from "./shared/pages/signup-hotel/SignupHotel.jsx";
+import BookingsByHotelId from "./admin-module/dasboard/BookingByHotelId.jsx"
 
 const handleRedirect = async () => {
   const token = localStorage.getItem("token");
@@ -52,6 +58,10 @@ export const router = createBrowserRouter([
         element: <Signup />,
       },
       {
+        path: "/signup/hotel",
+        element: <SignupHotel />,
+      },
+      {
         path: "",
         element: <PrivateClientRoute />,
         children: [
@@ -85,11 +95,23 @@ export const router = createBrowserRouter([
             path: "/admin",
             element: <AdminDashboard />,
           },
+          {
+            path: "/admin/bookings/by-hotel/:id",
+            element: <BookingsByHotelId />,
+          },
         ],
       },
       {
         path: "hotel/create",
         element: <CreateHotel />,
+      },
+      {
+        path: "/admin/hotel",
+        element: <HotelContainer />,
+      },
+      {
+        path: "users",
+        element: <User />,
       },
     ],
   },
