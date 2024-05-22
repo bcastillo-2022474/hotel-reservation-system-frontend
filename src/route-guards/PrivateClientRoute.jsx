@@ -21,6 +21,18 @@ export async function validateToken(token) {
   return (await response.json()).data;
 }
 
+export async function getAdminHotelInfo(token) {
+  const response = await fetch(`${API_URL}/auth/token/admin`, {
+    headers: {
+      "x-token": `${token}`,
+    },
+  });
+
+  if (!response.ok) return null;
+
+  return (await response.json()).data;
+}
+
 // THIS COMPONENT MUST BE THE PARENT CONTAINER
 // OF EVERYTHING THAT REQUIRES USER AUTHENTICATION
 export function UserValidation() {
