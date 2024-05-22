@@ -16,7 +16,7 @@ import Hotel from "./client-module/hotel/Hotel.jsx";
 import Room from "./client-module/room-by-hotel-id/Room.jsx";
 import BookingOfLoggedUser from "./client-module/booking-by-user-id/BookingOfLoggedUser.jsx";
 import CreateHotel from "./shared/pages/CreateHotel.jsx";
-import { loadHotelIdByUser } from "./platform-module/loaders/loadHotelIdByUser.js";
+import RoomForm from "./shared/pages/RoomForm.jsx"
 
 const handleRedirect = async () => {
   const token = localStorage.getItem("token");
@@ -66,6 +66,10 @@ export const router = createBrowserRouter([
           {
             path: "/room/:id",
             element: <Room />,
+          },
+          {
+            path: "/room/form",
+            element: <RoomForm/>,
           },
           {
             path: "/me/bookings",
