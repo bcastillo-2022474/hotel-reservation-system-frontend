@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../config.js";
 
@@ -32,47 +33,95 @@ function HotelContainer() {
   const { hotels } = data;
   console.log(data)
 
+  function DeleteHotel({ hotelId }) {
+    const queryClient = useQueryClient();
+    const mutation = useMutation({
+      mutationFn: async () => {
+        const response = await fetch(`${API_URL}/hotel/${hotelId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "x-token": localStorage.getItem("token"),
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      },
+      onSuccess: () => {
+        toast("Hotel eliminado", { type: "success" });
+        queryClient.invalidateQueries(["hotel"]);
+      },
+      onError: (error) => {
+        toast("Error: " + error.message, { type: "error" });
+      },
+    });
+
+    return (
+      <button
+        onClick={() => {
+          if (mutation.isError || mutation.isPending) return;
+          mutation.mutate();
+        }}
+        className="bg-red-500 text-white px-3 py-2 rounded outline-none focus:outline-2 focus:outline-black outline-offset-1"
+      >
+        <span>
+          {mutation.isPending && (
+            <>
+              <span>Eliminando</span>
+              <span className="animate-spin size-[25px] border-4 border-b-black border-t-black rounded-full" />
+            </>
+          )}
+          {mutation.isIdle && <span>Eliminar</span>}
+          {mutation.isError && "Error"}
+        </span>
+      </button>
+    );
+  }
+
+  DeleteHotel.propTypes = {
+    hotelId: PropTypes.string.isRequired,
+  };
+
   return (
     <div className="flex justify-center mt-8">
       <section className="flex flex-wrap justify-center gap-6 max-w-screen-lg">
         {hotels.map((hotel) => {
-          // Limitar la longitud de la descripción y agregar "..." si es necesario
           let description =
             hotel.description.length > 100
               ? `${hotel.description.slice(0, 100)}...`
               : hotel.description;
-
           return (
             <div
               key={hotel._id}
-              className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 mb-6"
+              className="bg-white rounded-lg shadow-md p-4 max-w-xs w-full cursor-pointer mb-6 relative border-2 border-gray-300"
             >
-              <Link
-                to={`/hotel/${hotel._id}`}
-                className="block rounded-lg overflow-hidden border border-gray-300 transform hover:scale-105 transition duration-300"
-              >
-                <ImgHotel id={hotel._id}></ImgHotel>
-                <div className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl flex flex-col h-full">
+              <div className="flex flex-col gap-2">
+                <Link to={`/hotel/${hotel._id}`}>
+                  <ImgHotel id={hotel._id} />
+                </Link>
+                <div>
+                  <h1 className="text-lg font-semibold text-neutral-600">{hotel.name}</h1>
                   <div>
-                    <p className="text-xl font-semibold mb-2">{hotel.name}</p>
-                    <div className="mb-4">
-                      <p className="text-gray-700 mb-2">
-                        <span className="font-semibold">País:</span> {hotel.country}
-                      </p>
-                      <p className="text-gray-700">
-                        <span className="font-semibold">Dirección:</span>{" "}
-                        {hotel.address}
-                      </p>
-                    </div>
-                    <p className="text-gray-700 mb-4">{description}</p>
+                    <p className="text-sm flex gap-1">
+                      <span className="font-semibold">País:</span>
+                      <span>{hotel.country}</span>
+                    </p>
+                    <p className="text-sm flex gap-1">
+                      <span className="font-semibold">Dirección:</span>
+                      <span>{hotel.address}</span>
+                    </p>
                   </div>
-                  <div className="mt-auto">
-                    <button className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition duration-300">
-                      Eliminar
-                    </button>
-                  </div>
+                  <p className="text-sm flex gap-1">
+                    <span className="font-semibold">Descripción:</span>
+                    <span className="overflow-hidden" style={{ textOverflow: "ellipsis" }}>{description}</span>
+                  </p>
                 </div>
-              </Link>
+              </div>
+              <div className="absolute bottom-2 left-2">
+                <DeleteHotel hotelId={hotel._id} />
+              </div>
             </div>
           );
         })}
